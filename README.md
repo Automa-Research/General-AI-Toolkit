@@ -32,6 +32,14 @@ Hello and welcome to the **General AI Toolkit**, your one-stop shop for diving i
 
 ---
 
+### Important Notes
+
+- **Storage Requirements**: Installing all the packages and libraries will require several gigabytes of storage. Make sure you have sufficient disk space before proceeding with the installation.
+
+- **Installation Time**: The installation process can be time-consuming, depending on your device's capabilities. Please be patient and allow the script to fully execute.
+
+---
+
 ## Installation
 
 To install the General AI Toolkit, simply run the provided installation script. This script will install a plethora of essential packages, libraries, and frameworks, including but not limited to CUDA 11.8, cuDNN 11.8, YOLOv5, OpenCV, and many more.
