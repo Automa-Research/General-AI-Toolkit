@@ -22,7 +22,7 @@ pip install yolov5
 pip uninstall -y opencv-python
 
 echo "-------------------------------------------"
-echo "Installed YOLOv5 and uninstalled OpenCV Python."
+echo "Installed YOLOv5 and PyTorch."
 echo "-------------------------------------------"
 
 # CUDA 11.8
@@ -91,6 +91,11 @@ echo "Adding environment variables to .bashrc..."
 echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
 echo 'export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
 echo 'export LD_LIBRARY_PATH=$CUDA_HOME/extras/CUPTI/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export PATH=/usr/local/cuda-11.8/bin:$PATH' >> ~/.bashrc
+echo 'export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+echo 'export PATH="/usr/local/cuda-11.8/bin:$PATH"' >> ~/.bashrc
+echo 'export PATH="/usr/local/cuda-11.8/libnvvp:$PATH"' >> ~/.bashrc
+echo 'export PATH="usr/local/cuda-11.8/extras/CUPTI:$PATH"' >> ~/.bashrc
 echo 'alias cls="printf \"\033c\""' >> ~/.bashrc
 echo 'export MPLCONFIGDIR=~/mpl_config' >> ~/.bashrc
 source ~/.bashrc
@@ -111,14 +116,14 @@ echo "Installed Microconda."
 echo "-------------------------------------------"
 
 # Other pip installs
-echo "Installing scikit-learn, DLIB, and face_recognition..."
+echo "Installing scikit-learn, Tensorflow, DLIB, and face_recognition..."
 pip install scikit-learn
 pip install dlib --verbose
 pip install face_recognition
 pip install tensorflow
 
 echo "-------------------------------------------"
-echo "Installed scikit-learn, DLIB, and face_recognition."
+echo "Installed scikit-learn, TensorFlow, DLIB, and face_recognition."
 echo "-------------------------------------------"
 
 # CUML AND CUDF
