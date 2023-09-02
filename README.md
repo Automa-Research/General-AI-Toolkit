@@ -1,7 +1,7 @@
 # General AI Toolkit Installation Guide
 
 <p align="center">
-  <img src="https://community.nasscom.in/sites/default/files/styles/960_x_600/public/media/images/learn%20ai.jpg?itok=oxkFTb_W" alt="General AI Toolkit Logo" width="320" height="200">
+  <img src="https://community.nasscom.in/sites/default/files/styles/960_x_600/public/media/images/learn%20ai.jpg?itok=oxkFTb_W" alt="General AI Toolkit Logo" width="320" height="200" style="border-radius: 12px; box-shadow: 0 0 10px violet;">
 </p>
 
 ---
