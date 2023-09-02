@@ -46,7 +46,7 @@ To install the General AI Toolkit, simply run the provided installation script. 
 
 ```bash
 git clone https://github.com/Automa-Research/General-AI-Toolkit.git
-cd General-AI-Toolkit
+cp General-AI-Toolkit/ubuntuBasicSetup.sh $HOME
 chmod +x ubuntuBasicSetup.sh
 ./ubuntuBasicSetup.sh
 ```
