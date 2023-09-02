@@ -56,7 +56,9 @@ sudo bash ubuntuBasicSetup.sh
 
 ### Basic Packages
 
-- **v4l2loopback-dkms, build-essential, cmake, git, unzip, pkg-config**: Essential for general development.
+- **v4l2loopback-dkms, build-essential, cmake, git, unzip, pkg-config**, and [more](All-Packages.md): Essential for general development.
+
+> **Note**: The list above is not exhaustive. For a complete list of all the basic packages being installed, please refer to the [All-Packages.md](All-Packages.md) file.
 
 ### Computer Vision
 
