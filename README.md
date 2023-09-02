@@ -25,8 +25,10 @@ Hello and welcome to the **General AI Toolkit**, your one-stop shop for diving i
 ## Prerequisites
 
 - Ubuntu 22.04
-- NVIDIA GPU (Compute Capability 8.6)
+- NVIDIA 30 Series Graphics Card
 - Internet connection
+
+> **Note**: This toolkit is specifically designed to run on Ubuntu 22.04 and requires an NVIDIA 30 Series Graphics Card for optimal performance.
 
 ---
 
@@ -76,6 +78,37 @@ sudo bash ubuntuBasicSetup.sh
 
 - **CUML and CUDF**: GPU-accelerated machine learning and data manipulation libraries.
 
+
+
+---
+## Features
+
+### Basic Packages
+
+- **v4l2loopback-dkms, build-essential, cmake, git, unzip, pkg-config**: Essential for general development.
+
+### Computer Vision
+
+- **OpenCV GPU Version**: High-performance computer vision library.
+- **YOLOv5**: State-of-the-art object detection framework.
+- **OpenPose GPU Version**: Real-time multi-person keypoint detection library for body, face, hands, and foot estimation.
+
+### Machine Learning
+
+- **scikit-learn, DLIB, face_recognition**: Popular machine learning libraries.
+- **TensorFlow**: Open-source platform for machine learning.
+
+### CUDA and cuDNN
+
+- **CUDA 11.8**: Parallel computing platform and programming model.
+- **cuDNN 11.8**: GPU-accelerated library for deep neural networks.
+
+### RAPIDS
+
+- **CUML and CUDF**: GPU-accelerated machine learning and data manipulation libraries.
+
+> **Note**: This toolkit also adds the `cls` command to your terminal, which can be used as an alternative to the `clear` command to clear the terminal screen.
+
 ---
 
 ## License
@@ -84,4 +117,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ---
 
-**© 2023 General AI Toolkit, Inc. All Rights Reserved.**
+**© 2023 Automa, Inc. All Rights Reserved.**
