@@ -79,6 +79,7 @@ chmod +x ubuntuBasicSetup.sh
 
 - **scikit-learn, DLIB, face_recognition**: Popular machine learning libraries.
 - **TensorFlow**: Open-source platform for machine learning.
+- **PyTorch**: An open-source machine learning library for Python, used for a range of tasks including natural language processing and artificial intelligence.
 
 ### CUDA and cuDNN
 
