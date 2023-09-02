@@ -7,7 +7,7 @@ echo "-------------------------------------------"
 # Basics
 echo "Installing Basic Packages..."
 sudo apt-get update
-sudo apt-get install -y v4l2loopback-dkms build-essential cmake git unzip pkg-config libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
+sudo apt-get install -y v4l2loopback-dkms build-essential cmake git unzip pkg-config libjpeg-dev libtiff5-dev libpng-dev
 sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk-3-dev libatlas-base-dev gfortran python3-dev libopencv-dev libfreeimage-dev protobuf-compiler libavutil-dev
 sudo apt-get install -y libavdevice-dev libavfilter-dev libavformat-dev libavcodec-dev libswresample-dev libswscale-dev libopenblas-dev libgtk-3-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libeigen3-dev libtesseract-dev
 sudo apt-get install -y libgoogle-glog-dev libboost-thread-dev libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev libgflags-dev libgoogle-glog-dev liblmdb-dev python3-numpy python3-pip libboost-all-dev python3-tk libhdf5-dev libatlas-base-dev
@@ -17,7 +17,7 @@ echo "Installed Basic Packages."
 echo "-------------------------------------------"
 
 # YOLOv5 and OpenCV uninstall
-echo "Installing YOLOv5 and uninstalling OpenCV Python..."
+echo "Installing YOLOv5 and PyTorch..."
 pip install yolov5
 pip uninstall -y opencv-python
 
@@ -88,16 +88,18 @@ echo "-------------------------------------------"
 
 # Add to .bashrc
 echo "Adding environment variables to .bashrc..."
-echo 'export CUDA_HOME=/usr/local/cuda' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=$CUDA_HOME/extras/CUPTI/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
-echo 'export PATH=/usr/local/cuda-11.8/bin:$PATH' >> ~/.bashrc
-echo 'export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
-echo 'export PATH="/usr/local/cuda-11.8/bin:$PATH"' >> ~/.bashrc
-echo 'export PATH="/usr/local/cuda-11.8/libnvvp:$PATH"' >> ~/.bashrc
-echo 'export PATH="usr/local/cuda-11.8/extras/CUPTI:$PATH"' >> ~/.bashrc
-echo 'alias cls="printf \"\033c\""' >> ~/.bashrc
-echo 'export MPLCONFIGDIR=~/mpl_config' >> ~/.bashrc
+cat <<EOL >> ~/.bashrc
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=\$CUDA_HOME/lib64:\$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=\$CUDA_HOME/extras/CUPTI/lib64:\$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-11.8/bin:\$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:\$LD_LIBRARY_PATH
+export PATH="/usr/local/cuda-11.8/bin:\$PATH"
+export PATH="/usr/local/cuda-11.8/libnvvp:\$PATH"
+export PATH="usr/local/cuda-11.8/extras/CUPTI:\$PATH"
+alias cls="printf \"\033c\""
+export MPLCONFIGDIR=~/mpl_config
+EOL
 source ~/.bashrc
 
 echo "-------------------------------------------"
