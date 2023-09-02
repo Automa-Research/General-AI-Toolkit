@@ -47,9 +47,10 @@ To install the General AI Toolkit, simply run the provided installation script. 
 ```bash
 git clone https://github.com/Automa-Research/General-AI-Toolkit.git
 cd General-AI-Toolkit
-sudo chmod +x ubuntuBasicSetup.sh
-sudo bash ubuntuBasicSetup.sh 
+chmod +x ubuntuBasicSetup.sh
+./ubuntuBasicSetup.sh
 ```
+> **⚠️ Important**: Do not run the script in sudo mode as it will install everything in the root directory and could mess up your system. You may need to reset your operating system to recover your storage. For the script to work correctly, it must be run from user home directory.
 
 > **Note**: After installation and restarting the terminal, you might want to disable Conda's auto-activation feature. To do so, restart the terminal and run the following command:
 >
