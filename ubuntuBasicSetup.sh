@@ -147,6 +147,50 @@ echo "-------------------------------------------"
 echo "Held packages."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing Nvidia Video Codec SDK."
+echo "-------------------------------------------"
+
+wget -O Video_Codec_SDK_12.1.14.zip "https://developer.download.nvidia.com/designworks/video-codec-sdk/secure/12.1/Video_Codec_SDK_12.1.14.zip?iOJeoSksQ7ra8ofggXuqyK_fOIbMnf3ad2nywIrYNwN2Kseg9AEkTef8sbf-KnKer1-xfeMRhMaikE0hrPovGBhM37soDIp7GfZFVWEbYL3HkkugXWRX8Bb9qwVeBE4HVEiagpxEFp2nAiLOkvEUTdCE9aMH3uPQZZFGQ842sOOS8g==&t=eyJscyI6ImdzZW8iLCJsc2QiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyJ9"
+unzip Video_Codec_SDK_12.1.14.zip -d Video_Codec_SDK
+cd Video_Codec_SDK/Video_Codec_SDK_12.1.14
+
+sudo cp Interface/*.h /usr/local/cuda/include/
+sudo cp Lib/linux/stubs/x86_64/*.so /usr/local/cuda/lib64/stubs/
+cd
+
+echo "-------------------------------------------"
+echo "Installed Nvidia Video Codec SDK."
+echo "-------------------------------------------"
+
+echo "-------------------------------------------"
+echo "Installing OpenCv GPU"
+echo "-------------------------------------------"
+
+VIDEO_CODEC_SDK_PATH="~/Video_Codec_SDK/Video_Codec_SDK_*"
+
+nvcuvid_path=$(find /usr/local -name 'libnvcuvid.so' 2>/dev/null | head -n 1)
+nvidia_encode_path=$(find /usr/local -name 'libnvidia-encode.so' 2>/dev/null | head -n 1)
+
+if [[ -z "$nvcuvid_path" ]]; then
+  echo "libnvcuvid.so not found in /usr/local. Attempting to use the Video Codec SDK stub..."
+  nvcuvid_path=$(find $VIDEO_CODEC_SDK_PATH -name 'libnvcuvid.so' 2>/dev/null | head -n 1)
+fi
+
+if [[ -z "$nvidia_encode_path" ]]; then
+  echo "libnvidia-encode.so not found in /usr/local. Attempting to use the Video Codec SDK stub..."
+  nvidia_encode_path=$(find $VIDEO_CODEC_SDK_PATH -name 'libnvidia-encode.so' 2>/dev/null | head -n 1)
+fi
+
+if [[ -z "$nvcuvid_path" ]]; then
+  echo "libnvcuvid.so could not be found. Please install the NVIDIA Video Codec SDK manually."
+  exit 1
+fi
+
+if [[ -z "$nvidia_encode_path" ]]; then
+  echo "libnvidia-encode.so could not be found. Please install the NVIDIA Video Codec SDK manually."
+  exit 1
+fi
 
 # OPENCV-GPU
 echo "Attempting to Install OpenCV GPU Version..."
@@ -172,6 +216,10 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D BUILD_TESTS=OFF \
       -D BUILD_opencv_python3=ON \
       -D opencv_dnn_superres=ON \
+      -D WITH_NVCUVID=ON \
+      -D CUDA_nvcuvid_LIBRARY="$nvcuvid_path" \
+      -D WITH_NVCUVENC=ON \
+      -D CUDA_nvidia-encode_LIBRARY="$nvidia_encode_path" \
       ..
 
 make -j$(nproc)
