@@ -1,7 +1,7 @@
 # General AI Toolkit Installation Guide
 
 <p align="center">
-  <img src="https://i.imgur.com/JVVyDL4.png" alt="General AI Toolkit Logo" width="320" height="200" style="border-radius: 12px; box-shadow: 0 0 10px violet;">
+  <img src="https://i.imgur.com/JVVyDL4.png" alt="General AI Toolkit Logo" width="320" height="320" style="border-radius: 12px; box-shadow: 0 0 10px violet;">
 </p>
 
 ---
