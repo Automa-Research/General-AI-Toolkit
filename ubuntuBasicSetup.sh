@@ -5,7 +5,9 @@ echo "Starting the setup..."
 echo "-------------------------------------------"
 
 # Basics
-echo "Installing Basic Packages..."
+echo "-------------------------------------------------------"
+echo "Installing Basic Packages... This Might Take A While"
+echo "-------------------------------------------------------"
 sudo apt-get update
 sudo apt-get install -y v4l2loopback-dkms build-essential cmake git unzip pkg-config libjpeg-dev libtiff5-dev libpng-dev
 sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libgtk-3-dev libatlas-base-dev gfortran python3-dev libopencv-dev libfreeimage-dev protobuf-compiler libavutil-dev
@@ -16,8 +18,11 @@ echo "-------------------------------------------"
 echo "Installed Basic Packages."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing YOLOv5 and PyTorch."
+echo "-------------------------------------------"
+
 # YOLOv5 and OpenCV uninstall
-echo "Installing YOLOv5 and PyTorch..."
 pip install yolov5
 pip uninstall -y opencv-python
 
@@ -25,8 +30,11 @@ echo "-------------------------------------------"
 echo "Installed YOLOv5 and PyTorch."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing CUDA 11.8."
+echo "-------------------------------------------"
+
 # CUDA 11.8
-echo "Installing CUDA 11.8..."
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
 sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
 wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda-repo-ubuntu2204-11-8-local_11.8.0-520.61.05-1_amd64.deb
@@ -39,8 +47,11 @@ echo "-------------------------------------------"
 echo "Installed CUDA 11.8."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing cuDNN for CUDA 11.8."
+echo "-------------------------------------------"
+
 # CUDNN 11.8
-echo "Installing CUDNN 11.8..."
 echo "Trying to download CUDNN v8.9.4.25_1.0-1_amd64 automatically"
 
 # Google Drive File ID and Destination Filename
@@ -83,11 +94,14 @@ sudo make clean && sudo make
 cd
 
 echo "-------------------------------------------"
-echo "Installed CUDNN 11.8."
+echo "Installed cuDNN."
+echo "-------------------------------------------"
+
+echo "-------------------------------------------"
+echo "Adding environment variables to .bashrc."
 echo "-------------------------------------------"
 
 # Add to .bashrc
-echo "Adding environment variables to .bashrc..."
 cat <<EOL >> ~/.bashrc
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=\$CUDA_HOME/lib64:\$LD_LIBRARY_PATH
@@ -106,8 +120,11 @@ echo "-------------------------------------------"
 echo "Added environment variables to .bashrc."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing Microconda."
+echo "-------------------------------------------"
+
 # Microconda
-echo "Installing Microconda..."
 sudo apt-get install wget
 wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-Linux-x86_64.sh
 sh ./Miniconda3-py39_4.12.0-Linux-x86_64.sh
@@ -117,8 +134,11 @@ echo "-------------------------------------------"
 echo "Installed Microconda."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing scikit-learn, TensorFlow, DLIB, and face_recognition."
+echo "-------------------------------------------"
+
 # Other pip installs
-echo "Installing scikit-learn, Tensorflow, DLIB, and face_recognition..."
 pip install scikit-learn
 pip install dlib --verbose
 pip install face_recognition
@@ -128,8 +148,11 @@ echo "-------------------------------------------"
 echo "Installed scikit-learn, TensorFlow, DLIB, and face_recognition."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing CUML and CUDF."
+echo "-------------------------------------------"
+
 # CUML AND CUDF
-echo "Installing CUML and CUDF..."
 conda install -c rapidsai -c conda-forge -c nvidia  cudf=23.04 cuml=23.04 python=3.10 cudatoolkit=11.8
 pip install cudf-cu11 dask-cudf-cu11 --extra-index-url=https://pypi.nvidia.com
 pip install cuml-cu11 --extra-index-url=https://pypi.nvidia.com
@@ -151,21 +174,31 @@ echo "-------------------------------------------"
 echo "Installing Nvidia Video Codec SDK."
 echo "-------------------------------------------"
 
-wget -O Video_Codec_SDK_12.1.14.zip "https://developer.download.nvidia.com/designworks/video-codec-sdk/secure/12.1/Video_Codec_SDK_12.1.14.zip?iOJeoSksQ7ra8ofggXuqyK_fOIbMnf3ad2nywIrYNwN2Kseg9AEkTef8sbf-KnKer1-xfeMRhMaikE0hrPovGBhM37soDIp7GfZFVWEbYL3HkkugXWRX8Bb9qwVeBE4HVEiagpxEFp2nAiLOkvEUTdCE9aMH3uPQZZFGQ842sOOS8g==&t=eyJscyI6ImdzZW8iLCJsc2QiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyJ9"
-unzip Video_Codec_SDK_12.1.14.zip -d Video_Codec_SDK
-cd Video_Codec_SDK/Video_Codec_SDK_12.1.14
+# Google Drive File ID and Destination Filename
+FILE_ID="1BL-g_ytLr2yxGQyVqaCE7qu3PfLrjfTJ"
+DESTINATION="Video_Codec_SDK_12.1.14.zip"
 
-sudo cp Interface/*.h /usr/local/cuda/include/
-sudo cp Lib/linux/stubs/x86_64/*.so /usr/local/cuda/lib64/stubs/
+# Fetch the confirmation token and store it in a variable
+CONFIRM=$(curl -sc /tmp/gcookie "https://drive.google.com/uc?export=download&id=${FILE_ID}" | grep -o 'confirm=[^&]*' | sed 's/confirm=//')
+
+# Use wget to download the file using the confirmation token and cookies
+wget --load-cookies /tmp/gcookie "https://drive.google.com/uc?export=download&confirm=${CONFIRM}&id=${FILE_ID}" -O ${DESTINATION}
+
+# Check if wget was successful
+if [ $? -eq 0 ]; then
+  echo "Download successful! Proceeding with extraction and setup."
+  # Proceed with unzipping and setting up the SDK
+  unzip ${DESTINATION} -d Video_Codec_SDK
+  cd Video_Codec_SDK/Video_Codec_SDK_12.1.14
+  sudo cp Interface/*.h /usr/local/cuda/include/
+  sudo cp Lib/linux/stubs/x86_64/*.so /usr/local/cuda/lib64/stubs/
+else
+  echo "Failed to download. Please check the link or manually download the SDK."
+fi
+
+# Clean up the cookie file
+rm -f /tmp/gcookie
 cd
-
-echo "-------------------------------------------"
-echo "Installed Nvidia Video Codec SDK."
-echo "-------------------------------------------"
-
-echo "-------------------------------------------"
-echo "Installing OpenCv GPU"
-echo "-------------------------------------------"
 
 VIDEO_CODEC_SDK_PATH="~/Video_Codec_SDK/Video_Codec_SDK_*"
 
@@ -192,8 +225,24 @@ if [[ -z "$nvidia_encode_path" ]]; then
   exit 1
 fi
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(dirname $nvcuvid_path)
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(dirname $nvidia_encode_path)
+
+source ~/.bashrc
+
+sudo ln -s $nvcuvid_path /usr/local/lib/libnvcuvid.so.1
+sudo ln -s $nvidia_encode_path /usr/local/lib/libnvidia-encode.so.1
+sudo ldconfig
+
+echo "-------------------------------------------"
+echo "Installed Nvidia Video Codec SDK."
+echo "-------------------------------------------"
+
+echo "-------------------------------------------"
+echo "Installing OpenCv GPU"
+echo "-------------------------------------------"
+
 # OPENCV-GPU
-echo "Attempting to Install OpenCV GPU Version..."
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
@@ -232,8 +281,11 @@ echo "-------------------------------------------"
 echo "Installed OpenCV GPU Version."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
+echo "Installing OpenPose GPU Version."
+echo "-------------------------------------------"
+
 # OPENPOSE GPU
-echo "Attempting to Install OpenPose GPU Version..."
 git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose
 cd openpose/
 git submodule update --init --recursive --remote
@@ -251,5 +303,6 @@ echo "-------------------------------------------"
 echo "Installed OpenPose GPU Version."
 echo "-------------------------------------------"
 
+echo "-------------------------------------------"
 echo "Script finished."
 echo "-------------------------------------------"
