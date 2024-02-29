@@ -1,7 +1,7 @@
 # General AI Toolkit Installation Guide
 
 <p align="center">
-  <img src="https://community.nasscom.in/sites/default/files/styles/960_x_600/public/media/images/learn%20ai.jpg?itok=oxkFTb_W" alt="General AI Toolkit Logo" width="320" height="200" style="border-radius: 12px; box-shadow: 0 0 10px violet;">
+  <img src="https://lh3.googleusercontent.com/bard/ADjfeTcwgTk9LD5Ty7AYl2VeYv7gz-Br0yRW9m3SgD8uRYbHcuDd6rSYZnhU8Ww3fEPxyx5GkMDfEqvOdqyCqhyw--GYx04LbHmkw_99BEY-fhWnYSFHPox5IJkwE3Da14-ECgT_x99Sf9yaT1M6_DxnCgU5p_19y5e2Q8bBuCgYyB_HxS4KpdLkNnI87luSMWITeOtITpYmK-bAtk2-Ubp9nYQaytUGPddfWPPKsNscw1KP1Aaa84uHfifr7EYWuFoGYrcROf3UZ90cAoc0ozw3-0KfwR_EDmLvg4kt0djdHV9niaZwMQhxztvfPHp8NmxWd3pDkxojYoQeR_EFPw" alt="General AI Toolkit Logo" width="320" height="200" style="border-radius: 12px; box-shadow: 0 0 10px violet;">
 </p>
 
 ---
@@ -128,4 +128,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 
 ---
 
-**© 2023 Automa, Inc. All Rights Reserved.**
+**© 2024 Automa, Inc. All Rights Reserved.**
