@@ -19,18 +19,6 @@ echo "Installed Basic Packages."
 echo "-------------------------------------------"
 
 echo "-------------------------------------------"
-echo "Installing YOLOv5 and PyTorch."
-echo "-------------------------------------------"
-
-# YOLOv5 and OpenCV uninstall
-pip install yolov5
-pip uninstall -y opencv-python
-
-echo "-------------------------------------------"
-echo "Installed YOLOv5 and PyTorch."
-echo "-------------------------------------------"
-
-echo "-------------------------------------------"
 echo "Installing CUDA 11.8."
 echo "-------------------------------------------"
 
@@ -143,7 +131,9 @@ pip install scikit-learn
 pip install dlib --verbose
 pip install face_recognition
 pip install tensorflow
+pip install yolov5
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip uninstall -y opencv-python
 
 echo "-------------------------------------------"
 echo "Installed scikit-learn, TensorFlow, DLIB, and face_recognition."
