@@ -143,6 +143,7 @@ pip install scikit-learn
 pip install dlib --verbose
 pip install face_recognition
 pip install tensorflow
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 echo "-------------------------------------------"
 echo "Installed scikit-learn, TensorFlow, DLIB, and face_recognition."
