@@ -11,6 +11,7 @@
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Docker Image](#docker-image)
 - [Features](#features)
 - [License](#license)
 
@@ -61,36 +62,24 @@ chmod +x ubuntuBasicSetup.sh
 
 ---
 
-## Features
+## Docker Image
 
-### Basic Packages
+A Docker image has been created that comes pre-installed with all the packages and libraries from the General AI Toolkit. This image is accessible at `ecstranaut/gait:latest` and provides a convenient way to get started with AI development without the need for manual installation.
 
-- **v4l2loopback-dkms, build-essential, cmake, git, unzip, pkg-config**, and [more](All-Packages.md): Essential for general development.
+The image is designed to work seamlessly with NVIDIA GPUs, allowing users to leverage the power of GPU acceleration right out of the box. There's no need to specify the `--gpus all` flag when running the container, as it is already configured to utilize the available GPU resources.
 
-> **Note**: The list above is not exhaustive. For a complete list of all the basic packages being installed, please refer to the [All-Packages.md](All-Packages.md) file.
+To run the Docker container and check the GPU status, use the following command:
 
-### Computer Vision
+```bash
+docker run --rm ecstranaut/gait:latest nvidia-smi
+```
 
-- **OpenCV GPU Version**: High-performance computer vision library.
-- **YOLOv5**: State-of-the-art object detection framework.
-- **OpenPose GPU Version**: Real-time multi-person keypoint detection library for body, face, hands, and foot estimation.
+This command will start a new container, execute the `nvidia-smi` command to display information about the available GPUs, and then automatically remove the container when it exits.
 
-### Machine Learning
-
-- **scikit-learn, DLIB, face_recognition**: Popular machine learning libraries.
-- **TensorFlow**: Open-source platform for machine learning.
-- **PyTorch**: An open-source machine learning library for Python, used for a range of tasks including natural language processing and artificial intelligence.
-
-### CUDA and cuDNN
-
-- **CUDA 11.8**: Parallel computing platform and programming model.
-- **cuDNN 11.8**: GPU-accelerated library for deep neural networks.
-
-### RAPIDS
-
-- **CUML and CUDF**: GPU-accelerated machine learning and data manipulation libraries.
+With this Docker image, users have a fully set up environment that includes all the features and capabilities of the General AI Toolkit, ready to be used for AI projects and experiments.
 
 ---
+
 ## Features
 
 ### Basic Packages
